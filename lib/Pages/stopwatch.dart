@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class StopWatch extends StatefulWidget {
@@ -90,7 +89,6 @@ class StopWatchState extends State<StopWatch> {
                 ?.copyWith(color: Colors.white),
           ),
           Text(
-            //'$seconds ${_secondsString()}',
             _secondsString(milliseconds),
             style: Theme.of(context)
                 .textTheme
@@ -152,12 +150,6 @@ class StopWatchState extends State<StopWatch> {
               trailing: Text(_secondsString(milliseconds)),
             );
           }
-          /*children: [
-        for (int milliseconds in laps)
-          ListTile(
-            title: Text(_secondsString(milliseconds)),
-          )
-      ],*/
           ),
     );
   }
