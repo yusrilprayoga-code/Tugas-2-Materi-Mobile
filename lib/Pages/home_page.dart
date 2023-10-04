@@ -1,96 +1,18 @@
 import 'package:Layout_Flutter/Pages/customShap.dart';
-import 'package:Layout_Flutter/Pages/group_data.dart';
-
+import 'package:Layout_Flutter/Pages/details_group.dart';
+import 'package:Layout_Flutter/Pages/help_us.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentPageIndex = 0;
-
-  List<Widget> pages = [
-    // Halaman 0
-    SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                'Data Kelompok',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            groupData(),
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Recommended Places',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-    Builder(
-      builder: (BuildContext context) {
-        return Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                SnackBar snackBar = SnackBar(
-                  content: Text('Logout Success'),
-                  duration: Duration(seconds: 2),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-              child: Text(
-                'Logout',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                primary: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    ),
-  ];
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -128,14 +50,111 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: IndexedStack(
-        index: currentPageIndex,
-        children: pages,
+        index: _currentIndex,
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: CarouselSlider(
+                    items: [
+                      InkWell(
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return detailsGroup(0, context);
+                          },
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/yusril.jpg',
+                              fit: BoxFit.cover,
+                              filterQuality: FilterQuality.high,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return detailsGroup(1, context);
+                          },
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/daffa.jpg',
+                              fit: BoxFit.cover,
+                              filterQuality: FilterQuality.high,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return detailsGroup(2, context);
+                          },
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/3.jpg',
+                              fit: BoxFit.cover,
+                              filterQuality: FilterQuality.high,
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Tambahkan Item Carousel Lainnya
+                    ],
+                    options: CarouselOptions(
+                      height: 300,
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 0.55,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayAnimationDuration:
+                          const Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'Isi konten di sini...',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Widget currentpage untuk Help Us
+          HelpPage(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPageIndex,
+        currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            currentPageIndex = index;
+            _currentIndex = index;
           });
         },
         items: [
@@ -145,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.help),
-            label: 'HelpUs',
+            label: 'Help Us',
           ),
         ],
       ),
