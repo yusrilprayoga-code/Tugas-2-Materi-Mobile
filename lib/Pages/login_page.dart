@@ -10,6 +10,8 @@ class MyLoginPage extends StatefulWidget {
 }
 
 class _MyLoginPageState extends State<MyLoginPage> {
+  String usernameError = "";
+  String passwordError = "";
   String username = "";
   String password = "";
   bool isLoginSuccess = true;
@@ -75,8 +77,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
         },
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.person, color: Colors.deepPurple),
-          errorText: (isLoginSuccess) ? null : "Username Salah",
-          hintText: "Username", // Warna teks hint
+          hintText: "Username",
+          errorText: (usernameError.isNotEmpty)
+              ? usernameError
+              : null, // Warna teks hint
           filled: true,
           fillColor: Colors.white, // Warna latar belakang field
           border: OutlineInputBorder(
@@ -109,8 +113,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.lock, color: Colors.deepPurple),
           hintText: "Password",
-          errorText:
-              (isLoginSuccess) ? null : "Password Salah", // Warna teks hint
+          errorText: (passwordError.isNotEmpty)
+              ? passwordError
+              : null, // Warna teks hint
           filled: true,
           fillColor: Colors.white, // Warna latar belakang field
           border: OutlineInputBorder(
@@ -156,28 +161,38 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 : Colors.deepPurple,
           ),
           onPressed: () {
-            String text = "";
+            setState(() {
+              usernameError = "";
+              passwordError = "";
+            });
+
             if (username == "admin" && password == "admin123") {
-              setState(() {
-                text = "Login Success";
-                isLoginSuccess = true;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              });
+              // Login berhasil
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MyHomePage()),
+              );
             } else {
-              setState(() {
-                text = "Login Failed";
-                isLoginSuccess = false;
-              });
+              // Login gagal
+              if (username != "admin") {
+                setState(() {
+                  usernameError = "Username salah";
+                });
+              }
+              if (password != "admin123") {
+                setState(() {
+                  passwordError = "Password salah";
+                });
+              }
             }
 
-            SnackBar snackBar = SnackBar(
-              content: Text(text),
-              duration: Duration(seconds: 1),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            if (usernameError.isEmpty && passwordError.isEmpty) {
+              SnackBar snackBar = SnackBar(
+                content: Text("Login Success"),
+                duration: Duration(seconds: 1),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
           },
           child: const Text(
             "SIGN IN",
