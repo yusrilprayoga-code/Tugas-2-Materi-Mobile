@@ -56,92 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                dataKelompok(),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: CarouselSlider(
-                    items: [
-                      InkWell(
-                        onTap: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return detailsGroup(0, context);
-                          },
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/images/yusril.jpg',
-                              fit: BoxFit.cover,
-                              filterQuality: FilterQuality.high,
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return detailsGroup(1, context);
-                          },
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/images/daffa.jpg',
-                              fit: BoxFit.cover,
-                              filterQuality: FilterQuality.high,
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return detailsGroup(2, context);
-                          },
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/images/3.jpg',
-                              fit: BoxFit.cover,
-                              filterQuality: FilterQuality.high,
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Tambahkan Item Carousel Lainnya
-                    ],
-                    options: CarouselOptions(
-                      height: 300,
-                      aspectRatio: 16 / 9,
-                      viewportFraction: 0.55,
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      reverse: false,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 3),
-                      autoPlayAnimationDuration:
-                          const Duration(milliseconds: 800),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      enlargeCenterPage: true,
-                      scrollDirection: Axis.horizontal,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    'Isi konten di sini...',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
+                  height: 20,
                 ),
               ],
             ),
@@ -169,5 +86,89 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  Widget dataKelompok() {
+    return Column(children: [
+      SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: CarouselSlider(
+          items: [
+            InkWell(
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return detailsGroup(0, context);
+                },
+              ),
+              child: Container(
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/images/yusril.jpg',
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return detailsGroup(1, context);
+                },
+              ),
+              child: Container(
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/images/daffa.jpg',
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return detailsGroup(2, context);
+                },
+              ),
+              child: Container(
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/images/3.jpg',
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            ),
+            // Tambahkan Item Carousel Lainnya
+          ],
+          options: CarouselOptions(
+            height: 300,
+            aspectRatio: 16 / 9,
+            viewportFraction: 0.55,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            autoPlay: true,
+            autoPlayInterval: const Duration(seconds: 3),
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            enlargeCenterPage: true,
+            scrollDirection: Axis.horizontal,
+          ),
+        ),
+      ),
+    ]);
   }
 }
