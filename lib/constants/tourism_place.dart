@@ -1,4 +1,5 @@
 class TourismPlace {
+  int id;
   String name;
   String location;
   String description;
@@ -11,6 +12,7 @@ class TourismPlace {
   bool isFavorite = false;
 
   TourismPlace({
+    required this.id,
     required this.name,
     required this.location,
     required this.description,
@@ -26,6 +28,7 @@ class TourismPlace {
 
 var tourismPlaceList = [
   TourismPlace(
+    id: 1,
     name: 'Farm House Lembang',
     location: 'Lembang',
     description:
@@ -43,6 +46,7 @@ var tourismPlaceList = [
         'https://www.tripadvisor.com/Attraction_Review-g7187358-d9609025-Reviews-Farmhouse_Bandung-Lembang_West_Java_Java.html',
   ),
   TourismPlace(
+    id: 2,
     name: 'Observatorium Bosscha',
     location: 'Lembang',
     description:
@@ -60,6 +64,7 @@ var tourismPlaceList = [
         'https://www.tripadvisor.com/Attraction_Review-g7187358-d4372938-Reviews-Bosscha_Observatory-Lembang_West_Java_Java.html',
   ),
   TourismPlace(
+      id: 3,
       name: 'Jalan Asia Afrika',
       location: 'Kota Bandung',
       description:
@@ -76,6 +81,7 @@ var tourismPlaceList = [
       websiteUrl:
           'https://www.tripadvisor.com/Attraction_Review-g297704-d10137291-Reviews-Jalan_Asia_Afrika-Bandung_West_Java_Java.html'),
   TourismPlace(
+      id: 4,
       name: 'Stone Garden',
       location: 'Padalarang',
       description:
@@ -92,6 +98,7 @@ var tourismPlaceList = [
       websiteUrl:
           'https://www.tripadvisor.com/Attraction_Review-g297704-d11672689-Reviews-Stone_Garden_Citatah-Bandung_West_Java_Java.html'),
   TourismPlace(
+      id: 5,
       name: 'Taman Film Pasopati',
       location: 'Kota Bandung',
       description:
@@ -108,6 +115,7 @@ var tourismPlaceList = [
       websiteUrl:
           'https://www.tripadvisor.com/Attraction_Review-g297704-d7901190-Reviews-Bandung_Movie_Park-Bandung_West_Java_Java.html'),
   TourismPlace(
+      id: 6,
       name: 'Museum Geologi',
       location: 'Kota Bandung',
       description:
@@ -124,6 +132,7 @@ var tourismPlaceList = [
       websiteUrl:
           'https://www.tripadvisor.com/Attraction_Review-g297704-d2229304-Reviews-Geology_Museum-Bandung_West_Java_Java.html'),
   TourismPlace(
+      id: 7,
       name: 'Floating Market',
       location: 'Lembang',
       description:
@@ -140,6 +149,7 @@ var tourismPlaceList = [
       websiteUrl:
           'https://www.tripadvisor.com/Attraction_Review-g7187358-d4473937-Reviews-Floating_Market_Lembang-Lembang_West_Java_Java.html'),
   TourismPlace(
+      id: 8,
       name: 'Kawah Putih',
       location: 'Ciwidey',
       description:
@@ -156,6 +166,7 @@ var tourismPlaceList = [
       websiteUrl:
           'https://www.tripadvisor.com/AttractionProductReview-g297704-d19091007-Kawah_Putih_tour_Day_trip_Ticket_etc_all_including-Bandung_West_Java_Java.html'),
   TourismPlace(
+      id: 9,
       name: 'Ranca Upas',
       location: 'Ciwidey',
       description:

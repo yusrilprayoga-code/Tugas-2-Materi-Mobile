@@ -21,6 +21,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
   int _currentIndex = 0;
   SortType currentSortType = SortType.nameAscending;
   bool isFavorite = false;
@@ -101,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     return Scaffold(
+      key: scaffoldMessengerKey,
       appBar: AppBar(
         toolbarHeight: 100,
         toolbarOpacity: 0.5,
@@ -243,9 +246,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: IconButton(
                                   icon: Icon(
                                     Icons.favorite,
-                                    color: Colors.red,
+                                    color: place.isFavorite
+                                        ? Colors.red
+                                        : Colors.grey,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      place.isFavorite = !place
+                                          .isFavorite; // Toggle the favorite status.
+                                    });
+                                    final snackBar = SnackBar(
+                                      content: Text(place.isFavorite
+                                          ? 'Added to Favorites'
+                                          : 'Removed from Favorites'),
+                                    );
+                                    scaffoldMessengerKey.currentState
+                                        ?.showSnackBar(snackBar);
+                                  },
                                 ),
                               ),
                             ],
